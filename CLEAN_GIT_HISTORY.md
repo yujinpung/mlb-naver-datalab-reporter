@@ -185,7 +185,7 @@ git clone https://github.com/yujinpung/mlb-naver-datalab-reporter.git
 
 ```powershell
 # 전체 히스토리에서 검색
-git log --all --full-history --source --pretty=format:"%H" | ForEach-Object { git show $_ | Select-String "xoxb-183311941203" }
+git log --all --full-history --source --pretty=format:"%H" | ForEach-Object { git show $_ | Select-String "xoxb-EXAMPLE" }
 ```
 
 아무것도 나오지 않으면 성공! ✅

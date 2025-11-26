@@ -70,7 +70,7 @@ Write-Host "[5/5] 검증 중..." -ForegroundColor Green
 
 # 히스토리에서 토큰 검색
 $found = git log --all --source --pretty=format:"%H" | ForEach-Object { 
-    git show $_ 2>$null | Select-String "xoxb-183311941203" -Quiet
+    git show $_ 2>$null | Select-String "xoxb-EXAMPLE" -Quiet
 }
 
 if ($found) {
