@@ -1,0 +1,35 @@
+# 환경 변수
+.env
+firebase-credentials.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# 스크린샷 및 로그
+screenshots/*.png
+!screenshots/.gitkeep
+logs/*.log
+!logs/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Playwright
+.playwright/
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+
