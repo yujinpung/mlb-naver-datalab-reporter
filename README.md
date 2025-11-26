@@ -1,117 +1,93 @@
-# 📊 네이버 데이터랩 자동 리포팅 시스템
+# 📊 네이버 데이터랩 모니터링 대시보드
 
-**완전 자동화된 네이버 검색 트렌드 모니터링 & 슬랙 배포 시스템**
+**매일 자동 업데이트되는 네이버 검색 트렌드 모니터링 대시보드**
 
-매일 아침, 네이버 데이터랩의 검색 트렌드 그래프를 자동으로 캡처하여  
-지정한 슬랙 채널로 전송하는 무인 자동화 솔루션입니다.
+[![GitHub Pages](https://img.shields.io/badge/Dashboard-Live-brightgreen?style=for-the-badge&logo=github)](https://yujinpung.github.io/mlb-naver-datalab-reporter/)
+[![Auto Update](https://img.shields.io/badge/Update-Daily%209AM-blue?style=for-the-badge&logo=github-actions)](https://github.com/yujinpung/mlb-naver-datalab-reporter/actions)
+
+**🌐 대시보드 바로가기**: https://yujinpung.github.io/mlb-naver-datalab-reporter/
 
 ---
 
 ## ✨ 주요 기능
 
-🤖 **완전 자동화**
-- 매일 정해진 시간에 자동 실행
-- 사용자 개입 없이 완전 무인 운영
+### 🤖 완전 자동화
+- **매일 오전 9시** 자동 실행 (GitHub Actions)
+- **무인 운영** - 서버 없이 클라우드에서 자동 실행
+- **자동 배포** - GitHub Pages에 즉시 반영
 
-📸 **스마트 캡처**
-- Playwright 기반 안정적인 브라우저 자동화
-- 헤드리스 모드 지원 (백그라운드 실행)
-- 고품질 PNG 스크린샷
+### 📊 실시간 대시보드
+- **반응형 디자인** - PC, 태블릿, 모바일 최적화
+- **8개 키워드** 동시 모니터링
+- **깔끔한 UI** - 한눈에 트렌드 파악
 
-💬 **슬랙 통합**
-- Webhook 또는 Bot Token 방식 지원
-- 이미지 + 메시지 자동 전송
-- 에러 발생 시 자동 알림
+### 📸 스마트 캡처
+- **Playwright 기반** 안정적인 브라우저 자동화
+- **고품질 PNG** 스크린샷
+- **자동 히스토리 관리** (30일)
 
-🔄 **신뢰성**
-- 자동 재시도 (최대 3회)
-- 상세한 로그 기록
-- 오래된 파일 자동 정리
-
----
-
-## 🎯 현재 검색 조건
-
-### 키워드
-```
-MLB / MLB키즈 / 모자 / 패딩
-```
-
-### 기간
-```
-시작일: 2025년 1월 1일
-종료일: 전일 (어제) - 자동 계산
-```
-
-**예시:**
-- 오늘이 11월 15일 → `2025-01-01 ~ 2025-11-14`
-- 오늘이 11월 16일 → `2025-01-01 ~ 2025-11-15`
-
-### 검색 범위
-- **기기**: MO/PC 전체
-- **성별**: 전체
-- **연령**: 전체
+### 🔒 보안
+- **민감 정보 보호** - 환경변수 관리
+- **GitHub Secrets** 사용
+- **Public 저장소** 안전성 인증 완료
 
 ---
 
-## 🚀 빠른 시작
+## 🎯 모니터링 키워드
 
-### 1. 설치
+현재 다음 8개 키워드를 추적하고 있습니다:
+
+```
+✅ MLB          ✅ MLB키즈
+✅ 패딩         ✅ 방한화
+✅ 키즈책가방   ✅ 커브러너
+✅ 카리나MLB    ✅ 비니
+```
+
+**검색 기간**: 2025-01-01 ~ 전일(어제)  
+**검색 범위**: MO/PC 전체, 성별/연령 전체
+
+---
+
+## 🖥️ 대시보드 미리보기
+
+대시보드에서 확인할 수 있는 정보:
+- 📈 키워드별 검색 트렌드 그래프
+- 📅 데이터 수집 날짜
+- 🔄 마지막 업데이트 시간
+- 🖱️ 이미지 클릭 시 확대 보기
+
+**매일 오전 9시 자동 업데이트!**
+
+---
+
+## 🚀 로컬 실행 방법
+
+### 1. 저장소 클론
 
 ```bash
-# 패키지 설치
-pip install -r requirements.txt
+git clone https://github.com/yujinpung/mlb-naver-datalab-reporter.git
+cd mlb-naver-datalab-reporter
+```
 
-# Playwright 브라우저 설치
+### 2. 패키지 설치
+
+```bash
+pip install -r requirements.txt
 playwright install chromium
 ```
 
-### 2. 슬랙 설정
-
-`.env.example` 파일을 복사하여 `.env` 생성:
-
-```bash
-copy .env.example .env
-```
-
-`.env` 파일에 슬랙 정보 입력:
-
-```env
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-SLACK_CHANNEL=#datalab-report
-SLACK_BOT_TOKEN=xoxb-your-bot-token  # 선택사항
-```
-
-### 3. 테스트 실행
+### 3. 스크린샷 캡처
 
 ```bash
 python main.py
 ```
 
-### 4. 자동 실행 설정
+캡처된 이미지는 `screenshots/` 폴더에 저장됩니다.
 
-Windows 작업 스케줄러에 `run_datalab.bat` 등록
+### 4. 대시보드 확인
 
-자세한 방법은 [`setup_guide.md`](setup_guide.md) 참고
-
----
-
-## 📁 프로젝트 구조
-
-```
-projectpung/
-├── main.py                # 메인 실행 스크립트
-├── config.py              # 설정 파일 (키워드 여기서 변경)
-├── datalab_scraper.py     # 네이버 데이터랩 스크래핑
-├── slack_sender.py        # 슬랙 메시지 전송
-├── requirements.txt       # 필수 패키지
-├── .env                   # 환경 변수 (직접 생성)
-├── run_datalab.bat        # Windows 실행 배치
-├── setup_guide.md         # 상세 설치 가이드
-├── README.md              # 이 파일
-├── screenshots/           # 캡처 이미지 저장
-└── logs/                  # 실행 로그 저장
-```
+`dashboard.html`을 브라우저로 열어 로컬에서 확인할 수 있습니다.
 
 ---
 
@@ -119,116 +95,211 @@ projectpung/
 
 ### 키워드 변경
 
-`config.py` 열어서 수정:
+`config.py` 파일에서 원하는 키워드 추가/변경:
 
 ```python
-KEYWORDS = ["MLB", "MLB키즈", "모자", "패딩"]
+KEYWORD_URLS = {
+    "MLB": "https://datalab.naver.com/keyword/trendResult.naver?hashKey=...",
+    "새키워드": "새로운_URL",
+}
 ```
 
-### 실행 시간 변경
+### 대시보드 디자인 변경
 
-Windows 작업 스케줄러에서 트리거 시간 수정
+`dashboard.html` 파일의 CSS 섹션 수정:
 
-### 헤드리스 모드 전환
+```html
+<style>
+    /* 여기서 색상, 레이아웃 등 커스터마이징 */
+</style>
+```
 
-`config.py`에서:
+### 검색 기간 변경
+
+`config.py` 파일에서:
 
 ```python
-HEADLESS_MODE = True   # 백그라운드 실행
-HEADLESS_MODE = False  # 브라우저 보이게 (디버깅용)
+START_DATE = "2025-01-01"  # 원하는 시작일로 변경
+# 종료일은 자동으로 전일(어제)로 계산됨
 ```
 
 ---
 
-## 🛠 기술 스택
+## 🏗️ 프로젝트 구조
 
-- **Python 3.8+**
+```
+mlb-naver-datalab-reporter/
+├── .github/
+│   └── workflows/
+│       └── daily.yml           # GitHub Actions 워크플로우
+├── screenshots/                # 스크린샷 저장 (자동 생성)
+├── logs/                       # 실행 로그 (자동 생성)
+├── main.py                     # 메인 실행 스크립트
+├── config.py                   # 설정 파일
+├── datalab_scraper.py          # 스크래핑 모듈
+├── dashboard.html              # 대시보드 (GitHub Pages)
+├── requirements.txt            # Python 패키지 목록
+└── README.md                   # 이 파일
+```
+
+---
+
+## 🔧 기술 스택
+
+### Backend (자동화)
+- **Python 3.11** - 메인 언어
 - **Playwright** - 브라우저 자동화
-- **Slack SDK** - 슬랙 통합
-- **Windows Task Scheduler** - 스케줄링
+- **python-dotenv** - 환경변수 관리
+
+### Frontend (대시보드)
+- **HTML5/CSS3** - 대시보드 UI
+- **JavaScript** - 동적 콘텐츠 로딩
+- **Responsive Design** - 모바일 최적화
+
+### CI/CD
+- **GitHub Actions** - 자동 실행 (매일 UTC 0시)
+- **GitHub Pages** - 대시보드 호스팅
 
 ---
 
-## 📊 실행 흐름
+## 📊 동작 원리
 
 ```
-1. Windows Task Scheduler 트리거 (매일 09:00)
+1. GitHub Actions 트리거 (매일 UTC 0시 = 한국 오전 9시)
    ↓
-2. run_datalab.bat 실행
+2. Python 스크립트 실행
    ↓
-3. main.py 시작
+3. Playwright로 네이버 데이터랩 접속
    ↓
-4. 네이버 데이터랩 접속 → 키워드 입력 → 그래프 캡처
+4. 키워드별 트렌드 그래프 캡처 (8개)
    ↓
 5. PNG 파일로 저장 (screenshots/)
    ↓
-6. 슬랙 채널로 이미지 전송
+6. Git에 커밋 및 푸시
    ↓
-7. 30일 이상 된 이미지 자동 삭제
+7. GitHub Pages에 자동 배포
    ↓
-8. 로그 저장 (logs/)
+8. 대시보드 업데이트 완료! ✅
 ```
 
 ---
 
-## 🔍 로그 확인
+## 🔍 GitHub Actions 워크플로우
+
+`.github/workflows/daily.yml`에서 자동화 설정:
+
+- **스케줄**: 매일 UTC 0시 (한국 오전 9시)
+- **수동 실행**: "Run workflow" 버튼으로 즉시 실행 가능
+- **자동 배포**: 성공 시 GitHub Pages에 자동 배포
+
+**워크플로우 확인**: [Actions 탭](https://github.com/yujinpung/mlb-naver-datalab-reporter/actions)
+
+---
+
+## 📈 사용 예시
+
+### 대시보드 접속
+```
+https://yujinpung.github.io/mlb-naver-datalab-reporter/
+```
+
+### 특정 날짜 스크린샷 확인
+```
+screenshots/NaverDatalab_2025-11-25_MLB.png
+screenshots/NaverDatalab_2025-11-25_패딩.png
+```
+
+### 로그 확인
+```
+logs/datalab_2025-11-26.log
+```
+
+---
+
+## 🛠️ 문제 해결
+
+### 대시보드에서 이미지가 안 보일 때
+
+1. **GitHub Actions 실행 확인**
+   - [Actions 탭](https://github.com/yujinpung/mlb-naver-datalab-reporter/actions)에서 최근 실행 확인
+   - 초록색 체크마크(✅) 확인
+
+2. **브라우저 캐시 삭제**
+   - `Ctrl + F5` (Windows) 또는 `Cmd + Shift + R` (Mac)
+
+3. **GitHub Pages 설정 확인**
+   - Settings → Pages → Source: `gh-pages` 브랜치 확인
+
+### 로컬 실행 오류
 
 ```bash
-# 오늘 로그 확인
-type logs\datalab_2025-11-15.log
+# Playwright 재설치
+playwright install chromium --with-deps
 
-# 스크린샷 확인
-dir screenshots\
+# 패키지 업데이트
+pip install --upgrade -r requirements.txt
 ```
 
 ---
 
-## ⚠️ 주의사항
+## 📝 업데이트 이력
 
-1. **네이버 데이터랩 URL**
-   - 현재는 기본 URL 사용
-   - 특정 키워드 조합 URL을 직접 설정하면 더 안정적
-   
-2. **슬랙 이미지 업로드**
-   - Webhook만으로는 이미지 업로드 불가
-   - Bot Token 필요 (선택사항)
-
-3. **윈도우 PC 켜져 있어야 함**
-   - 작업 스케줄러는 PC가 켜져 있어야 실행됨
-   - 24시간 서버 또는 클라우드 필요 시 별도 설정
+- **2025-11-26**: Public 저장소 전환, 보안 강화, 문서 개선
+- **2025-11-26**: GitHub Pages 대시보드 추가
+- **2025-11-15**: 8개 키워드로 확장
+- **2025-11-14**: 초기 버전 배포
 
 ---
 
-## 📖 상세 가이드
+## 📄 관련 문서
 
-- [설치 가이드](setup_guide.md) - 단계별 설치 방법
-- [슬랙 설정 가이드](setup_guide.md#슬랙-설정) - Webhook/Bot Token 생성
-- [문제 해결](setup_guide.md#문제-해결) - 자주 묻는 질문
+- [보안 점검 리포트](SECURITY_AUDIT_REPORT.md) - 보안 감사 결과
+- [최종 보안 확인](FINAL_SECURITY_CHECK.md) - Public 전환 후 점검
+- [GitHub Actions 설정](GITHUB_SETUP.md) - 워크플로우 가이드
+- [대시보드 설정](DASHBOARD_SETUP.md) - GitHub Pages 설정
 
 ---
 
 ## 🎁 향후 개선 계획
 
-- [ ] 네이버 데이터랩 공식 API 연동 (더 안정적)
-- [ ] 여러 키워드 조합 지원
-- [ ] 이메일 리포트 추가
-- [ ] 대시보드 웹 페이지
-- [ ] Docker 컨테이너화
+- [ ] 키워드별 알림 설정 (급등/급락 감지)
+- [ ] 주간/월간 리포트 생성
+- [ ] 차트 라이브러리 추가 (인터랙티브 그래프)
+- [ ] 키워드 비교 기능
+- [ ] 데이터 다운로드 기능 (CSV/Excel)
 
 ---
 
-## 📝 라이선스
+## 🤝 기여하기
 
-MIT License
+이 프로젝트에 기여하고 싶으신가요?
+
+1. **Fork** 저장소
+2. **Feature Branch** 생성 (`git checkout -b feature/AmazingFeature`)
+3. **Commit** 변경사항 (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** to Branch (`git push origin feature/AmazingFeature`)
+5. **Pull Request** 생성
 
 ---
 
-## 💡 문의 및 기여
+## 📜 라이선스
 
-문제가 발생하면 로그 파일을 확인하거나  
-`setup_guide.md`의 문제 해결 섹션을 참고하세요.
+이 프로젝트는 MIT 라이선스 하에 있습니다.
 
 ---
 
-**Made with ❤️ for automatic data monitoring**
+## 💡 문의 및 지원
+
+- **Issues**: [GitHub Issues](https://github.com/yujinpung/mlb-naver-datalab-reporter/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yujinpung/mlb-naver-datalab-reporter/discussions)
+
+---
+
+## ⭐ Star History
+
+이 프로젝트가 도움이 되셨다면 ⭐ Star를 눌러주세요!
+
+---
+
+**Made with ❤️ for automated trend monitoring**
 
