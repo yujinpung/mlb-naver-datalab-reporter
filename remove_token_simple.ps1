@@ -19,14 +19,14 @@ if ($LASTEXITCODE -eq 0) {
 
 Write-Host ""
 Write-Host "[2/5] Git 히스토리에서 민감한 정보 제거 중..." -ForegroundColor Green
-Write-Host "   제거할 토큰: xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk" -ForegroundColor Red
+Write-Host "   제거할 토큰: xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS" -ForegroundColor Red
 Write-Host ""
 
 # 환경변수 설정
 $env:FILTER_BRANCH_SQUELCH_WARNING = "1"
 
 # Git filter-branch 실행
-git filter-branch --force --tree-filter "if (Test-Path GITHUB_SETUP.md) { (Get-Content GITHUB_SETUP.md -Raw -Encoding UTF8) -replace 'xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk', 'xoxb-YOUR-BOT-TOKEN-HERE' | Set-Content GITHUB_SETUP.md -NoNewline -Encoding UTF8 }" --prune-empty --tag-name-filter cat -- --all
+git filter-branch --force --tree-filter "if (Test-Path GITHUB_SETUP.md) { (Get-Content GITHUB_SETUP.md -Raw -Encoding UTF8) -replace 'xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS', 'xoxb-YOUR-BOT-TOKEN-HERE' | Set-Content GITHUB_SETUP.md -NoNewline -Encoding UTF8 }" --prune-empty --tag-name-filter cat -- --all
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "❌ Filter-branch 실패!" -ForegroundColor Red

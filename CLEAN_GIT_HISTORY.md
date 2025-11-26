@@ -38,7 +38,7 @@ cd mlb-naver-datalab-reporter.git
 java -jar bfg.jar --replace-text passwords.txt
 
 # passwords.txt 파일 내용:
-# xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk===> *** REMOVED ***
+# xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS===> *** REMOVED ***
 ```
 
 ### 4단계: Git 정리 및 푸시

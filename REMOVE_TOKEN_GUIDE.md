@@ -30,7 +30,7 @@
 `passwords.txt` 파일을 메모장으로 만듭니다:
 
 ```
-xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk
+xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS
 ```
 
 저장 위치: `C:\Users\MADUP\Desktop\passwords.txt`
@@ -139,7 +139,7 @@ cd /c/Users/MADUP/Desktop/projectpung
 ```bash
 git filter-branch --force --tree-filter '
 if [ -f GITHUB_SETUP.md ]; then
-  sed -i "s/xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk/xoxb-YOUR-BOT-TOKEN-HERE/g" GITHUB_SETUP.md
+  sed -i "s/xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS/xoxb-YOUR-BOT-TOKEN-HERE/g" GITHUB_SETUP.md
 fi
 ' --prune-empty --tag-name-filter cat -- --all
 ```

@@ -5,7 +5,7 @@ Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "WARNING: This will rewrite Git history!" -ForegroundColor Yellow
 Write-Host ""
-Write-Host "Removing token: xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk" -ForegroundColor Red
+Write-Host "Removing token: xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS" -ForegroundColor Red
 Write-Host ""
 
 $continue = Read-Host "Continue? (yes/no)"
@@ -22,7 +22,7 @@ Write-Host ""
 Write-Host "Step 2: Filtering Git history..." -ForegroundColor Green
 
 # filter-branch를 사용하여 특정 텍스트 교체
-git filter-branch --force --tree-filter "if (Test-Path GITHUB_SETUP.md) { (Get-Content GITHUB_SETUP.md -Raw) -replace 'xoxb-183311941203-9934684663665-y4J8hFGLFuGL8Ls2DFKXu7vk', 'xoxb-YOUR-BOT-TOKEN-HERE' | Set-Content GITHUB_SETUP.md -NoNewline }" --tag-name-filter cat -- --all
+git filter-branch --force --tree-filter "if (Test-Path GITHUB_SETUP.md) { (Get-Content GITHUB_SETUP.md -Raw) -replace 'xoxb-EXAMPLE-TOKEN-REPLACE-WITH-YOURS', 'xoxb-YOUR-BOT-TOKEN-HERE' | Set-Content GITHUB_SETUP.md -NoNewline }" --tag-name-filter cat -- --all
 
 Write-Host ""
 Write-Host "Step 3: Cleaning up references..." -ForegroundColor Green
